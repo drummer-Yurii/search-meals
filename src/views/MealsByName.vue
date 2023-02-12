@@ -3,17 +3,14 @@
     <input v-model="keyword" type="text" class="rounded border-2 border-gray-200 w-full" placeholder="Search for Meals"
       @change="searchMeals" />
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 p-8">
-    <MealItem v-for="meal of meals" :key="meal.idMeal" :meal="meal" />
-  </div>
+  <Meals :meals="meals" />
 </template>
 
 <script setup>
 import { computed } from '@vue/reactivity';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import MealItem from '../components/MealItem.vue';
-import YouTubeButton from '../components/YouTubeButton.vue';
+import Meals from '../components/Meals.vue';
 import store from '../store';
 
 const route = useRoute();
