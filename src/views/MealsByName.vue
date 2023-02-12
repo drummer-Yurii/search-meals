@@ -1,6 +1,6 @@
 <template>
   <div class="p-8 pb-0">
-    <input v-model="keyword" type="text" class="rounded border-2 border-gray-200 w-full" placeholder="Search for Meals"
+    <input v-model="keyword" type="text" class="rounded border-2 bg-white border-gray-200 w-full" placeholder="Search for Meals"
       @change="searchMeals" />
   </div>
   <Meals :meals="meals" />
@@ -18,7 +18,11 @@ const keyword = ref('');
 const meals = computed(() => store.state.searchedMeals);
 
 function searchMeals() {
+  if (keyword.value) {
   store.dispatch('searchMeals', keyword.value)
+  } else {
+    store.commit('setSearchedMeals', [])
+  }
 }
 
 onMounted(() => {
